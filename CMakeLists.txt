@@ -1,4 +1,4 @@
-project(match_screw_oop)
+project(screw_detection)
 cmake_minimum_required(VERSION 2.8)
 
 find_package(OpenCV REQUIRED)
