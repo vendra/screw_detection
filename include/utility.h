@@ -17,6 +17,7 @@
 #include <opencv2/flann/flann.hpp>
 #include <opencv2/flann/flann_base.hpp>
 
+
 /* Class Utils
  * read the input path file and loads the image and template lists
  */

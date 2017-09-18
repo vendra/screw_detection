@@ -35,7 +35,7 @@ public:
     void setThreshold(float threshold);
 
     //Actually executes the template match search
-    void getMatch(std::vector<cv::Point2f>& output);
+    void getMatch(std::vector<cv::Point2f>& output, std::vector<double>& score);
 };
 
 #endif

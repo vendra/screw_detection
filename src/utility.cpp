@@ -8,10 +8,6 @@
   */
 
 #include "../include/utility.h"
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <iostream>
-
 
 Utils::Utils() {}
 

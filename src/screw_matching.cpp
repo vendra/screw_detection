@@ -54,7 +54,7 @@ void ScrewMatching::setThreshold(float threshold)
   }
 }
 
-void ScrewMatching::getMatch(std::vector<cv::Point2f>& output)
+void ScrewMatching::getMatch(std::vector<cv::Point2f>& output, std::vector<double>& score)
 {
   //TEMPLATE MATCH
   cv::Mat res(frame_.rows - template_image_.rows + 1, frame_.cols - template_image_.cols + 1, CV_32FC1);
@@ -69,6 +69,7 @@ void ScrewMatching::getMatch(std::vector<cv::Point2f>& output)
     minMaxLoc(res, &minval, &maxval, &minloc, &maxloc);
     cv::Point push_point(maxloc.x + template_image_.rows / 2 , maxloc.y + template_image_.cols / 2);
     output.push_back(push_point);
+    score.push_back(maxval);
     cv::floodFill(res, maxloc, cv::Scalar(0), 0, cv::Scalar(.1), cv::Scalar(1.));
   } while (maxval >= threshold);
 

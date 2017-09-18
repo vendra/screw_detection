@@ -65,6 +65,7 @@ int main(int argc, char* argv[])
     cv::namedWindow("Template", 0);
 
     std::vector<cv::Point2f> detected_points;
+    std::vector<double> score;
 
     bool exit_key_pressed = false;
     while (!exit_key_pressed)
@@ -77,9 +78,10 @@ int main(int argc, char* argv[])
             return -1;
         }
         detected_points.resize(0);
+        score.resize(0);
         screw_finder.setFrame(ref);
         screw_finder.setTemplate(tpl);
-        screw_finder.getMatch(detected_points);
+        screw_finder.getMatch(detected_points, score);
 
 
         cv::Mat distance(detected_points.size(), detected_points.size(), CV_32F);
@@ -120,9 +122,24 @@ int main(int argc, char* argv[])
             }
 
             if (neighbour_weight[i] > 5)
-                cv::circle(ref, detected_points[i], 2, CV_RGB(0, 255, 0), 2);
-            else
+            {
+                cv::circle(ref, detected_points[i], 2, CV_RGB(0, 255, 0), 2); //adds dot
+
+                //Adds text
+                std::ostringstream strs;
+                std::cout << score[i] << std::endl;
+                strs << score[i];
+                std::cout << "a" << std::endl;
+                std::string text = strs.str();
+                std::cout << "a" << std::endl;
+                text.resize(4);
+                std::cout << "a" << std::endl;
+                putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
+                        cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, cv::LINE_AA);
+
+            } else {
                 cv::circle(ref, detected_points[i], 2, CV_RGB(255, 0, 0), 2);
+            }
         }
 
 
