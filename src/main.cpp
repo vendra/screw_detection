@@ -17,26 +17,36 @@ const int RADIUS = 75; //point is neighbour if within radius
 static void show_usage(std::string name)
 {
     std::cerr << "Usage: " << name << " <.XML>\n"
-              << "\t -h, --help\t\t Show this help message\n"
+              << "\t-h, --help\t\t Show this help message\n"
+              << "\t-c  --clear\t\t Enables clear Mode\n"
               << "\t.XML \t\t\t path to the .XML file containing dataset paths" << std::endl;
 }
 
 int main(int argc, char* argv[])
 {
-    std::string arg = "../default.xml";
-    if (argc == 2)
+    std::string path = "../default.xml";
+    bool clearMode = false;
+    if (argc >= 2)
     {
-        arg = argv[1];
-        if ((arg == "-h") || (arg == "--help"))
+        for (int i=1; i<argc; ++i)
         {
-            show_usage(argv[0]);
-            return -1;
-        } else {
-            std::cout << "XML path specified: " << argv[1] << std::endl;
+            std::string arg = argv[i];
+            if ((arg == "-h") || (arg == "--help"))
+            {
+                show_usage(argv[0]);
+                return -1;
+            } else if ((arg == "-c") || (arg == "--clear"))
+            {
+                std::cout << "Clear Mode enabled" << std::endl;
+                clearMode = true; // Enable clearMode
+            } else {
+                std::cout << "XML path specified: " << argv[i] << std::endl;
+                path = argv[i];
+            }
         }
 
     } else if(argc == 1) {
-        std::cout << "Using default path" << std::endl;
+        std::cout << "Using default path: " << path << std::endl;
     } else {
         show_usage(argv[0]);
         return -1;
@@ -46,7 +56,7 @@ int main(int argc, char* argv[])
     int image_index = 0, template_index = 0, distance_index = 0;
 
     //Reading input datasets
-    bool check = Utils::readInput(arg, far_l, close_l, mid_l, temp_l);
+    bool check = Utils::readInput(path, far_l, close_l, mid_l, temp_l);
 
     //Loads initial frame and template
     cv::Mat init_frame = cv::imread(far_l[image_index]);
@@ -126,16 +136,19 @@ int main(int argc, char* argv[])
                 cv::circle(ref, detected_points[i], 2, CV_RGB(0, 255, 0), 2); //adds dot
 
                 //Adds text
-                std::ostringstream strs;
-                std::cout << score[i] << std::endl;
-                strs << score[i];
-                std::cout << "a" << std::endl;
-                std::string text = strs.str();
-                std::cout << "a" << std::endl;
-                text.resize(4);
-                std::cout << "a" << std::endl;
-                putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
-                        cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, cv::LINE_AA);
+                if (!clearMode)
+                {
+                    std::ostringstream strs;
+                    std::cout << score[i] << std::endl;
+                    strs << score[i];
+                    std::cout << "a" << std::endl;
+                    std::string text = strs.str();
+                    std::cout << "a" << std::endl;
+                    text.resize(4);
+                    std::cout << "a" << std::endl;
+                    putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
+                            cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, cv::LINE_AA);
+                }
 
             } else {
                 cv::circle(ref, detected_points[i], 2, CV_RGB(255, 0, 0), 2);
