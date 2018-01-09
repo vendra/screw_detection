@@ -1,4 +1,4 @@
-/** EuroC project: screw_matching.cpp
+/** EuroC project: ScrewMatcher.cpp
   *
   *
   *
@@ -7,16 +7,16 @@
   *
   */
 
-#include "../include/screw_matching.h"
+#include "../include/ScrewMatcher.h"
 
-ScrewMatching::ScrewMatching(const cv::Mat& frame, const cv::Mat& template_image, float threshold)
+ScrewMatcher::ScrewMatcher(const cv::Mat& frame, const cv::Mat& template_image, float threshold)
 {
 
 }
 
-ScrewMatching::ScrewMatching() {}
+ScrewMatcher::ScrewMatcher() {}
 
-void ScrewMatching::setFrame(const cv::Mat& frame)
+void ScrewMatcher::setFrame(const cv::Mat& frame)
 {
   try
   {
@@ -28,7 +28,7 @@ void ScrewMatching::setFrame(const cv::Mat& frame)
   }
 }
 
-void ScrewMatching::setTemplate(const cv::Mat& template_image)
+void ScrewMatcher::setTemplate(const cv::Mat& template_image)
 {
   try
   {
@@ -42,7 +42,7 @@ void ScrewMatching::setTemplate(const cv::Mat& template_image)
 
 }
 
-void ScrewMatching::setThreshold(float threshold)
+void ScrewMatcher::setThreshold(float threshold)
 {
   if (threshold < 0)
   {
@@ -54,7 +54,7 @@ void ScrewMatching::setThreshold(float threshold)
   }
 }
 
-void ScrewMatching::getMatch(std::vector<cv::Point2f>& output, std::vector<double>& score)
+void ScrewMatcher::getMatch(std::vector<cv::Point2f>& output, std::vector<double>& score)
 {
   //TEMPLATE MATCH
   cv::Mat res(frame_.rows - template_image_.rows + 1, frame_.cols - template_image_.cols + 1, CV_32FC1);

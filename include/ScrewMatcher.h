@@ -6,8 +6,8 @@
   *
   *
   */
-#ifndef SCREW_MATCHING_H
-#define SCREW_MATCHING_H
+#ifndef SCREW_MATCHER_H
+#define SCREW_MATCHER_H
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -15,15 +15,15 @@
 /*
  * Class that allows to identify a given template in a frame
  */
-class ScrewMatching
+class ScrewMatcher
 {
 private:
     cv::Mat frame_, template_image_;
     float threshold_;
 
 public:
-    ScrewMatching(const cv::Mat& frame, const cv::Mat& template_image, float threshold);
-    ScrewMatching();
+    ScrewMatcher(const cv::Mat& frame, const cv::Mat& template_image, float threshold);
+    ScrewMatcher();
 
     //Set the frame to use for template matching
     void setFrame(const cv::Mat& frame);

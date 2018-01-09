@@ -9,7 +9,7 @@
  *
  */
 
-#include "../include/screw_matching.h"
+#include "../include/ScrewMatcher.h"
 #include "../include/utility.h"
 
 const int RADIUS = 75; //point is neighbour if within radius
@@ -64,11 +64,11 @@ int main(int argc, char* argv[])
 
     image_list = far_l;
 
-    ScrewMatching screw_finder;
+    ScrewMatcher screw_finder;
     //set frame, template and threshold
     screw_finder.setFrame(init_frame);
-    screw_finder.ScrewMatching::setTemplate(init_temp);
-    screw_finder.ScrewMatching::setThreshold(0.50);
+    screw_finder.ScrewMatcher::setTemplate(init_temp);
+    screw_finder.ScrewMatcher::setThreshold(0.50);
 
     //Create windows to show output
     cv::namedWindow("Output", 1);
@@ -139,13 +139,10 @@ int main(int argc, char* argv[])
                 if (!clearMode)
                 {
                     std::ostringstream strs;
-                    std::cout << score[i] << std::endl;
+                    //std::cout << score[i] << std::endl;
                     strs << score[i];
-                    std::cout << "a" << std::endl;
                     std::string text = strs.str();
-                    std::cout << "a" << std::endl;
                     text.resize(4);
-                    std::cout << "a" << std::endl;
                     cv::putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
                             cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, 16);
                 }
