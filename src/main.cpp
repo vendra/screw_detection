@@ -146,8 +146,8 @@ int main(int argc, char* argv[])
                     std::cout << "a" << std::endl;
                     text.resize(4);
                     std::cout << "a" << std::endl;
-                    putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
-                            cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, cv::LINE_AA);
+                    cv::putText(ref, text, cv::Point(detected_points[i].x , detected_points[i].y - 5),
+                            cv::FONT_HERSHEY_DUPLEX, .35, cv::Scalar(0, 0, 0), 1, 16);
                 }
 
             } else {
