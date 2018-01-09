@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<opencv_storage>
+  <far>
+    /../dataset/stuttgart/close.jpg
+    /../dataset/stuttgart/mid.jpg
+    /../dataset/stuttgart/far.jpg
+  </far>
+  <mid>
+    /../dataset/stuttgart/close.jpg
+    /../dataset/stuttgart/mid.jpg
+    /../dataset/stuttgart/far.jpg
+  </mid>
+  <close>
+    /../dataset/stuttgart/close.jpg
+    /../dataset/stuttgart/mid.jpg
+    /../dataset/stuttgart/far.jpg
+  </close>
+  <template>
+    /../dataset/stuttgart/screws/temp01.png
+    /../dataset/stuttgart/screws/temp02.png
+    /../dataset/stuttgart/screws/temp03.png
+    /../dataset/stuttgart/screws/temp04.png
+  </template>
+</opencv_storage>

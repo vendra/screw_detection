@@ -19,7 +19,10 @@ static void show_usage(std::string name)
     std::cerr << "Usage: " << name << " <.XML>\n"
               << "\t-h, --help\t\t Show this help message\n"
               << "\t-c  --clear\t\t Enables clear Mode\n"
-              << "\t.XML \t\t\t path to the .XML file containing dataset paths" << std::endl;
+              << "\t.XML \t\t\t path to the .XML file containing dataset paths\n"
+              << "\tUsage: <- and -> arrows navigate through the set of images\n"
+              << "\t       Up and Down arrows navigate through the templates\n"
+              << "\t       '+' and '-' switch to a closer or further set of images\n" << std::endl;
 }
 
 int main(int argc, char* argv[])
@@ -51,6 +54,8 @@ int main(int argc, char* argv[])
         show_usage(argv[0]);
         return -1;
     }
+
+    show_usage(argv[0]);
 
     std::vector<std::string> far_l, close_l, mid_l, temp_l, image_list;
     int image_index = 0, template_index = 0, distance_index = 0;
