@@ -18,7 +18,7 @@ static void show_usage(std::string name)
 {
     std::cerr << "Usage: " << name << " <.XML>\n"
               << "\t-h, --help\t\t Show this help message\n"
-              << "\t-c  --clear\t\t Enables clear Mode\n"
+              << "\t-c  --clear\t\t Enables clear Mode (no rects and text)\n"
               << "\t.XML \t\t\t path to the .XML file containing dataset paths\n"
               << "\tUsage: <- and -> arrows navigate through the set of images\n"
               << "\t       Up and Down arrows navigate through the templates\n"
@@ -136,6 +136,14 @@ int main(int argc, char* argv[])
                 }
             }
 
+            //Draw squares
+            if(!clearMode)
+            {
+                cv::rectangle(ref, cv::Point(detected_points[i].x - tpl.cols/2, detected_points[i].y - tpl.rows/2),
+                              cv::Point(detected_points[i].x + tpl.cols/2, detected_points[i].y + tpl.rows/2),
+                              CV_RGB(0, 255, 0), 1);
+            }
+
             if (neighbour_weight[i] > 5)
             {
                 cv::circle(ref, detected_points[i], 2, CV_RGB(0, 255, 0), 2); //adds dot
@@ -155,6 +163,7 @@ int main(int argc, char* argv[])
             } else {
                 cv::circle(ref, detected_points[i], 2, CV_RGB(255, 0, 0), 2);
             }
+
         }
 
 
