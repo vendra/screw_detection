@@ -1,7 +1,4 @@
-===========================================  
-= 2) Screw Detection (Soluzione Proposta) =  
-===========================================  
-Screw Detection Demo:  
+Screw Detection Demo
   
 $ mkdir build && cd build  
 $ cmake ..   
